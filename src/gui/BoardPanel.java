@@ -77,9 +77,9 @@ public class BoardPanel extends JPanel {
 
             if (checkInCycle[x][y] == 0) {
                 checkInCycle[x][y] = 1;
-//                if (notOnEdge[x][y] == 0) {
+                if (notOnEdge[x][y] == 0) {
                     int energy = checkEnergy(x, y, grid[x][y]);
-
+//                System.out.println(energy);
                     if (energy == 0) {
                         notOnEdge[x][y] = 1;
                     } else {
@@ -88,18 +88,21 @@ public class BoardPanel extends JPanel {
                         int newEnergy = checkEnergy(x, y, newGridId);
 
 
-                        if (newEnergy < energy) {
+                        if (energy>newEnergy) {
+//                          System.out.print(" " + newEnergy);
+//                            System.out.println();
                             grid[x][y] = newGridId;
-                            repaint();
+//                            repaint();
                         }
 
-                        notOnEdge[x][y] = 0;
+//                        notOnEdge[x][y] = 0;
                     }
 
 
-//                }
+                }
 
                 i++;
+//                System.out.println(i);
             }
         }
 
@@ -114,7 +117,7 @@ public class BoardPanel extends JPanel {
             int y2 = rand.nextInt(3) + y - 1;
 
             if (x2 < 0)
-                x2=SIZE;
+                continue;
             if (x2 >= SIZE)
                 continue;
 
@@ -131,6 +134,7 @@ public class BoardPanel extends JPanel {
                 continue;
 
             return grid[x2][y2];
+
 
         }
     }
